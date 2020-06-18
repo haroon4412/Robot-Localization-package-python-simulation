@@ -19,14 +19,14 @@ def transfer(data, pub):
     to_send.header.stamp = rospy.Time.now()
     to_send.header.frame_id = "map"
 
-    to_send.pose.pose.position.x = data.x + (random.random()/10)
+    to_send.pose.pose.position.x = 0
     to_send.pose.pose.position.y = 0
     to_send.pose.pose.position.z = 0
     to_send.pose.pose.orientation.w = 1
     to_send.pose.pose.orientation.x = 0
     to_send.pose.pose.orientation.y = 0
     to_send.pose.pose.orientation.z = 0
-    to_send.pose.covariance[0] = 10
+    to_send.pose.covariance[0] = 1
     # to_send.pose.covariance[1:] = 0
 
 
@@ -35,13 +35,13 @@ def transfer(data, pub):
     to_send_twist.header.stamp = rospy.Time.now()
     to_send_twist.header.frame_id = "base_link"
 
-    to_send_twist.twist.twist.linear.x = (to_send.pose.pose.position.x - prev_x) / (time.time()-prev_time)
+    to_send_twist.twist.twist.linear.x = data.linear_velocity + random.random() - random.random()
     to_send_twist.twist.twist.linear.y = 0
     to_send_twist.twist.twist.linear.z = 0
     to_send_twist.twist.twist.angular.x = 0
     to_send_twist.twist.twist.angular.y = 0
     to_send_twist.twist.twist.angular.z = 0
-    to_send_twist.twist.covariance[0] = 500
+    to_send_twist.twist.covariance[0] = 1
     # to_send_twist.twist.covariance[1:] = 0
 
 

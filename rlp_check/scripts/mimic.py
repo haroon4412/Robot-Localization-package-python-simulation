@@ -4,11 +4,10 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
 def transfer(data, pub):
-    vel = data.twist.twist.linear.x
-    # x = Odometry()
-    # x.twist.twist.linear.x
+
     to_send = Twist()
-    to_send.linear.x = vel
+    to_send.linear.x = data.twist.twist.linear.x
+    
 
     pub.publish(to_send)
 
